@@ -18,5 +18,5 @@ git commit -m "your_description" <br>
 (保存本地分支) <br>
 git push origin <your_branch_name> <br>
 (将本地分支推送到远程库) <br>
-提交PR <br>
+提交PR (base on master) <br>
 等待merge <br>

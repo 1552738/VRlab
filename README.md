@@ -4,7 +4,7 @@
 ## Unity配置
 * 通过Edit->Project Settings->Editor菜单打开编辑器设置选项，将Version Control选项下的Mode设为Visual Meta Files <br>
 * 通过Edit->Project Settings->Editor菜单打开编辑器设置选项，将Asset Serialization下的Mode设为Force Text <br>
-## git管理（命令行操作）
+## Git
 git clone https://github.com/1552738/VRlab <br>
 (克隆到本地仓库） <br>
 git checkout master <br>
@@ -14,7 +14,7 @@ git pull <br>
 git checkout -b <your_branch_name> <br>
 (创建并切换到你的本地分支) <br>
 修改本地分支 <br>
-git commit -m "your_description" <br>
+git commit -am "your_description" <br>
 (保存本地分支) <br>
 git push origin <your_branch_name> <br>
 (将本地分支推送到远程库) <br>

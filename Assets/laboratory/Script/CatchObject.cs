@@ -18,7 +18,7 @@ public class CatchObject : MonoBehaviour
         SteamVR_TrackedController = GetComponent<SteamVR_TrackedController>();
         SteamVR_TrackedController.TriggerClicked += TriggerClicked;
         SteamVR_TrackedController.TriggerUnclicked += TriggerUnclicked;
-        SteamVR_TrackedController.Gripped += Gripped;
+        //SteamVR_TrackedController.Gripped += Gripped;
     }
 
     void OnTriggerStay(Collider collider)
@@ -27,8 +27,6 @@ public class CatchObject : MonoBehaviour
             return;
 
         pointTransform = collider.transform;
-
-        Debug.Log(pointTransform.name);
     }
 
     void OnTriggerExit(Collider collider)
@@ -44,11 +42,9 @@ public class CatchObject : MonoBehaviour
         // 从火柴盒中取一根火柴
         if (pointTransform.name == "match_box")
         {
-            Debug.Log("catch match_box");
-
             GameObject oneMatch = Instantiate(matchPrefab);
             oneMatch.transform.position = this.transform.position;
-            oneMatch.transform.Translate(0, 0, (float)0.1, this.transform);
+            oneMatch.transform.Translate(0, 0, (float)0.15, this.transform);
             oneMatch.name = "one_match";
             oneMatch.AddComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
             currentCatch = oneMatch;
@@ -57,9 +53,14 @@ public class CatchObject : MonoBehaviour
 
         //修改指向物体位置、Tag，并将其绑在手柄上
         pointTransform.position = this.transform.position;
-        pointTransform.transform.Translate(0, 0, (float)0.1, this.transform);
+        pointTransform.transform.Translate(0, 0, (float)0.15, this.transform);
         pointTransform.gameObject.AddComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
         currentCatch = pointTransform.gameObject;
+
+        if (pointTransform.name == "spoon")
+        {
+            pointTransform.rotation = this.transform.rotation;
+        }
     }
 
     void TriggerUnclicked(object sender, ClickedEventArgs e)
@@ -79,15 +80,15 @@ public class CatchObject : MonoBehaviour
         currentCatch = null;
     }
 
-    void Gripped(object sender, ClickedEventArgs e)
-    {
-        if (currentCatch.name != "one_match")
-            return;
+    //void Gripped(object sender, ClickedEventArgs e)
+    //{
+    //    if (currentCatch.name != "one_match")
+    //        return;
 
-        IgniteMatch igniteMatch = currentCatch.AddComponent<IgniteMatch>();
-        if (igniteMatch.canBeIgnited)
-        {
-            currentCatch.SendMessage("FireExposure");
-        }
-    }
+    //    IgniteMatch igniteMatch = currentCatch.AddComponent<IgniteMatch>();
+    //    if (igniteMatch.canBeIgnited)
+    //    {
+    //        currentCatch.SendMessage("FireExposure");
+    //    }
+    //}
 }

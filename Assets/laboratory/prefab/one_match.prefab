@@ -258,8 +258,8 @@ MonoBehaviour:
     type: 2}
   startActive: 1
   customParticles: {fileID: 0}
-  burnTime: 0
-  ignitionDelay: 0
+  burnTime: 10
+  ignitionDelay: 1
   ignitionSound: {fileID: 0}
   canSpreadFromThisSource: 1
   canBeIgnited: 0

@@ -44,7 +44,7 @@ public class CatchObject : MonoBehaviour
         {
             GameObject oneMatch = Instantiate(matchPrefab);
             oneMatch.transform.position = this.transform.position;
-            oneMatch.transform.Translate(0, 0, (float)0.15, this.transform);
+            oneMatch.transform.Translate(0, 0, 0.1f, this.transform);
             oneMatch.name = "one_match";
             oneMatch.AddComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
             currentCatch = oneMatch;
@@ -53,7 +53,7 @@ public class CatchObject : MonoBehaviour
 
         //修改指向物体位置、Tag，并将其绑在手柄上
         pointTransform.position = this.transform.position;
-        pointTransform.transform.Translate(0, 0, (float)0.15, this.transform);
+        pointTransform.transform.Translate(0, 0, 0.1f, this.transform);
         pointTransform.gameObject.AddComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
         currentCatch = pointTransform.gameObject;
 

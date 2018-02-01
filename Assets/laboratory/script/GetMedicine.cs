@@ -4,14 +4,42 @@ using UnityEngine;
 
 public class GetMedicine : MonoBehaviour {
 
-    private GameObject currentObject;
+    public GameObject medicinePrefab;
+    public float scoopDelay;
+
+    private float scoopTime;
+
+    // Use this for initialization
+    void Start()
+    {
+        scoopTime = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("111");
-        if (collider.name != "spoon")
-            return;
+        if (collider.gameObject.name == "medicine")
+        {
+            scoopTime = Time.time;
+            Debug.Log("medicine");
+        }
 
-        
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        if ((scoopTime != 0) && (Time.time > (scoopTime + scoopDelay)))
+        {
+            GameObject spoonful = Instantiate(medicinePrefab);
+            spoonful.transform.parent = transform;
+            spoonful.transform.position = transform.position;
+        }
+
+        scoopTime = 0;
     }
 }
